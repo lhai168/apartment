@@ -17,7 +17,7 @@ const app = express();
 
 app.use(express.json({extended: true}));
 app.use(express.urlencoded({extended: true}));
-app.use(cors({credentials: true, origin: "https://splendorous-snickerdoodle-655bb8.netlify.app"}));
+app.use(cors({credentials: true, origin: "https://lhai-apartment.netlify.app"}));
 
 
 
