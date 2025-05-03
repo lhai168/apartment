@@ -167,17 +167,8 @@ const editPost = async (req, res, next) => {
 
                         try
                         {
-                           let filename;
-                           let newFilename;
-                           let updatedPost
 
                            let { title, category, description } = req.body; 
-                            
-                           if(req.files)
-                           {
-                              let {thumbnail} = req.files;
-
-                           }
  
                            const postId = req.params.id;
 
@@ -196,6 +187,8 @@ const editPost = async (req, res, next) => {
                               }
                               else
                               {
+                                let {thumbnail} = req.files;
+                                
                                  fs.unlink(path.join(__dirname +'/server/', '..', 'uploads', oldPost.thumbnail), async (err)=> {
                                     if(err)
                                     {
@@ -210,9 +203,9 @@ const editPost = async (req, res, next) => {
                                  }
    
                                  
-                                 filename = thumbnail.name;
+                                 let filename = thumbnail.name;
                                  let splittedFilename = filename.split('.');
-                                 newFilename = splittedFilename[0] + uuidv4() + '.' + splittedFilename[splittedFilename.length - 1];
+                                 let newFilename = splittedFilename[0] + uuidv4() + "." + splittedFilename[splittedFilename.length - 1 ];
    
                                  thumbnail.mv(path.join(__dirname + '/server/', '..', 'uploads', newFilename), async (err)=> {
                                            if(err)
@@ -222,7 +215,7 @@ const editPost = async (req, res, next) => {
       
                                  });
 
-                                 
+                                 let updatedPost;
                                  updatedPost = await Post.findByIdAndUpdate(postId,{ title, category, description,thumbnail: newFilename }, { new: true} );
                              
                               }
