@@ -35,7 +35,7 @@ const createPost = async (req, res, next) => {
                              let splittedFilename = filename.split('.');
                              let newFilename = splittedFilename[0] + uuidv4() + "." + splittedFilename[splittedFilename.length - 1 ];
 
-                             thumbnail.mv(path.join(__dirname + '/server/', '..', 'uploads', newFilename), async (err)=> {
+                             thumbnail.mv(path.join(__dirname + '/server/', '..', 'uploads', newFilename), (err)=> {
                                        if(err)
                                        {
                                           return next(new HttpError(err));
@@ -189,7 +189,7 @@ const editPost = async (req, res, next) => {
                               {
                                 let {thumbnail} = req.files;
                                 
-                                 fs.unlink(path.join(__dirname +'/server/', '..', 'uploads', oldPost.thumbnail), async (err)=> {
+                                 fs.unlink(path.join(__dirname +'/server/', '..', 'uploads', oldPost.thumbnail), (err)=> {
                                     if(err)
                                     {
                                        return next(new HttpError(err));
@@ -253,7 +253,7 @@ const deletePost = async (req, res, next) => {
                               
                               if(req.user.id == post.creator)
                               {  
-                                 fs.unlink(path.join(__dirname +'/server/', '..', 'uploads', filename), async (err)=> {
+                                 fs.unlink(path.join(__dirname +'/server/', '..', 'uploads', filename), (err)=> {
                                     if(err)
                                     {
                                       return next(new HttpError(err));
