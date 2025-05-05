@@ -215,8 +215,7 @@ const editPost = async (req, res, next) => {
       
                                  });
 
-                                 let updatedPost;
-                                 updatedPost = await Post.findByIdAndUpdate(postId,{ title, category, description,thumbnail: newFilename }, { new: true} );
+                                 const updatedPost = await Post.findByIdAndUpdate(postId,{ title, category, description,thumbnail: newFilename }, { new: true} );
                              
                               }
                            }
