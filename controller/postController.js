@@ -35,7 +35,7 @@ const createPost = async (req, res, next) => {
                              let splittedFilename = filename.split('.');
                              let newFilename = splittedFilename[0] + uuidv4() + "." + splittedFilename[splittedFilename.length - 1 ];
 
-                             thumbnail.mv(path.join(__dirname + '/server/', '..', '/uploads', newFilename), (err)=> {
+                             thumbnail.mv(path.join('/uploads', newFilename), (err)=> {
                                        if(err)
                                        {
                                           return next(new HttpError(err));
